@@ -18,8 +18,3 @@ function youPlay() {
         }
     })
 }
-
-// 不知道小伙伴已经修改过上面函数，在此情形下，我添加了另一个函数
-function newFunction() {
-
-}
