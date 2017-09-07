@@ -12,9 +12,9 @@ function youPlay() {
         var needShow = (posTop - winH + winH / 2) <= scrollH && scrollH <= (posTop - winH + winH / 2 + targetH);
         if (needShow) {
             $('video').each(function() {
-                $(this)[0].pause();
+                this.pause();
             })
-            $(this)[0].play();
+            this.play();
         }
     })
 }
