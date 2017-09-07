@@ -18,3 +18,26 @@ function youPlay() {
         }
     })
 }
+// 用游标对表全部检索
+function getObjectStore(osName, callback, isEnd) {
+
+    isEnd['isEnd'] = false;
+    var request = indexedDB.open('pageData', 1);
+    request.onsuccess = function() {
+        let db = this.result;
+        var trans = db.transaction([osName], 'readwrite');
+        var os = trans.objectStore([osName]);
+
+        // 游标遍历表全部数据（循环）
+        var cursorReq = os.openCursor();
+        console.log(cursorReq);
+        cursorReq.onsuccess = function() {
+            // 最后一次的result为空
+            if (this.result) {
+                callback(this.result.value);
+                this.result.continue();
+            } else {
+                isEnd['isEnd'] = true;
+            }
+        }
+    }
